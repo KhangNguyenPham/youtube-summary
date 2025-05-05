@@ -1,0 +1,25 @@
+Chuyển nội dung sau thành một bài blog nấu ăn dưới định dạng JSON **thuần** (pure JSON). 
+Không được bọc bằng bất kỳ markdown code block như ```json hoặc dấu backtick nào.
+
+Yêu cầu:
+- Không thêm bất kỳ đoạn giới thiệu ngoài lề nào như "Đây là kết quả", "Dưới đây là...", v.v.
+- Chỉ xuất ra JSON thuần theo cấu trúc sau:
+
+{
+  "title": "...",
+  "introduction": "...",
+  "ingredients": ["...", "..."],
+  "sections": [
+    {
+      "title": "...",
+      "steps": ["...", "..."]
+    },
+    ...
+  ],
+  "conclusion": "..."
+}
+
+Nội dung đầu vào:
+{{transcript}}
+
+Chỉ trả về kết quả JSON, không thêm mô tả, không dùng định dạng HTML, không wrap bằng code block hoặc markdown.
