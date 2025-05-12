@@ -5,6 +5,8 @@ from services.gemini_service import call_gemini_api
 from services.transcript_service import get_youtube_transcript
 
 def validate_input(data):
+    return None
+
     if not data.get("url"):
         return "Missing video URL"
     if "youtube.com/watch?v=" not in data.get("url"):
