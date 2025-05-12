@@ -7,13 +7,16 @@ from youtube_transcript_api import YouTubeTranscriptApi, NoTranscriptFound, Tran
 logger = logging.getLogger(__name__)
 DEFAULT_LANGUAGE = os.getenv("DEFAULT_LANGUAGE", "vi")
 TRANSCRIPT_TIMEOUT = int(os.getenv("TRANSCRIPT_TIMEOUT", 5))
+PROXIES = {
+    "https": os.getenv("PROXY")
+}
 
 async def get_youtube_transcript(video_url: str, language: str = DEFAULT_LANGUAGE) -> str | None:
     try:
         video_id = video_url.split("v=")[-1].split("&")[0]
 
         loop = asyncio.get_event_loop()
-        get_transcript_func = partial(YouTubeTranscriptApi.get_transcript, video_id, languages=[language])
+        get_transcript_func = partial(YouTubeTranscriptApi.get_transcript, video_id, languages=[language], proxies=PROXIES)
         transcript = await asyncio.wait_for(loop.run_in_executor(None, get_transcript_func), timeout=TRANSCRIPT_TIMEOUT)
 
         return " ".join([entry['text'] for entry in transcript])
