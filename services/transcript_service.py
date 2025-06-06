@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 DEFAULT_LANGUAGE = os.getenv("DEFAULT_LANGUAGE", "vi")
 TRANSCRIPT_TIMEOUT = int(os.getenv("TRANSCRIPT_TIMEOUT", 5))
 PROXIES = {
-    "https": os.getenv("PROXY")
+    "http": os.getenv("PROXY")
 }
 
 def extract_video_id(video_url: str) -> str | None:
